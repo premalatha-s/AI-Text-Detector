@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI vs Human Detector</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0;
+            color: #333;
+        }
+
+        .container {
+            width: 60%;
+            margin: 80px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 12px 25px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .clear-btn {
+            background: #e74c3c;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 12px;
+            background: #f9fafc;
+        }
+
+        .badge {
+            padding: 8px 15px;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .human { background: #2ecc71; }
+        .ai { background: #e74c3c; }
+
+        .confidence-bar {
+            margin-top: 10px;
+            height: 12px;
+            background: #ddd;
+            border-radius: 6px;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: #667eea;
+            border-radius: 6px;
+        }
+
+        .info {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>🤖 AI vs Human Text Detector</h1>
+
+    <form method="POST">
+        <textarea name="text" placeholder="Type or paste your text here..."></textarea>
+        <br>
+        <button type="submit">Analyze</button>
+        <button type="reset" class="clear-btn">Clear</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+
+        <h3>Prediction</h3>
+        <span class="badge {{ result.prediction }}">
+            {{ result.prediction }}
+        </span>
+
+        <h3>Confidence</h3>
+        <p>{{ result.confidence }}</p>
+        <div class="confidence-bar">
+            <div class="confidence-fill" style="width: {{ (result.confidence * 100)|round(0) }}%"></div>
+        </div>
+
+        <div class="info">
+            Confidence Level: {{ result.level }}
+        </div>
+
+        <div class="info">
+            Word Count: {{ result.word_count }}
+        </div>
+
+        <h3>Decision</h3>
+        <p>{{ result.decision }}</p>
+
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
