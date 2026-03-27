@@ -45,7 +45,8 @@ venv\Scripts\activate
 
 3. Install dependencies:
 
-pip install pandas scikit-learn flask
+pip install pandas scikit-learn nltk
+pip install flask
 
 4. Run the application:
 
@@ -71,7 +72,6 @@ For any input text, the system provides:
 * No external APIs used
 * Lightweight and efficient
 * Easy to deploy
-
 
 ##  Note
 
